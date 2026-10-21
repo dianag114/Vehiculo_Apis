@@ -1,0 +1,387 @@
+
+:root {
+  --blue: #0639a8;
+  --blue-dark: #031c55;
+  --cyan: #00f5ff;
+  --white: #f4f9ff;
+  --muted: #a9c7f7;
+  --panel: rgba(3, 25, 75, 0.72);
+  --border: rgba(219, 241, 255, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 30%, #1257d5 0%, transparent 48%),
+    linear-gradient(135deg, #052b83, #041849 70%, #020e2c);
+}
+
+button {
+  color: var(--white);
+  font: inherit;
+  cursor: pointer;
+}
+
+.topbar {
+  min-height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 4%;
+  border-bottom: 1px solid var(--border);
+  background: rgba(2, 17, 52, 0.55);
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 5px 0 0;
+  font-size: clamp(22px, 3vw, 31px);
+  letter-spacing: 3px;
+}
+
+h1 span {
+  color: var(--cyan);
+}
+
+h2 {
+  margin: 7px 0;
+  font-size: 18px;
+}
+
+.connection,
+.part-state {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.9fr);
+  gap: 20px;
+  padding: 22px 4%;
+}
+
+.viewer,
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(10px);
+}
+
+.viewer {
+  min-width: 0;
+  padding: 18px;
+}
+
+.viewer-heading,
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.chip {
+  border: 1px solid var(--cyan);
+  border-radius: 30px;
+  padding: 6px 10px;
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+#sceneContainer {
+  position: relative;
+  width: 100%;
+  height: clamp(400px, 60vh, 720px);
+  margin-top: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(230, 248, 255, 0.55);
+  border-radius: 10px;
+  background: #0639a8;
+}
+
+#sceneContainer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  cursor: crosshair;
+}
+
+#loadingOverlay {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  background: rgba(2, 21, 67, 0.92);
+  color: var(--white);
+  font-size: 13px;
+  text-align: center;
+}
+
+#loadingOverlay.hidden {
+  display: none;
+}
+
+.loader {
+  width: 35px;
+  height: 35px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.scene-label {
+  position: absolute;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  pointer-events: none;
+  text-shadow: 0 0 7px #00183f;
+}
+
+.top-left {
+  top: 15px;
+  left: 15px;
+}
+
+.bottom-left {
+  bottom: 15px;
+  left: 15px;
+}
+
+.bottom-right {
+  right: 15px;
+  bottom: 15px;
+  max-width: 45%;
+  text-align: right;
+  color: var(--cyan);
+}
+
+.viewer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 13px;
+}
+
+.control-button,
+.refresh-button {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.2s;
+}
+
+.control-button {
+  padding: 9px 12px;
+  font-size: 11px;
+}
+
+.control-button:hover,
+.control-button.active,
+.refresh-button:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.14);
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.panel {
+  padding: 17px;
+}
+
+.selected-panel {
+  border-color: rgba(0, 245, 255, 0.55);
+}
+
+#partDescription {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.part-state {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.refresh-button {
+  width: 34px;
+  height: 34px;
+  font-size: 23px;
+}
+
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.sensor-card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(220, 240, 255, 0.25);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.045);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sensor-card.sensor-active {
+  border-color: var(--cyan);
+  box-shadow: inset 0 0 15px rgba(0, 245, 255, 0.08),
+              0 0 12px rgba(0, 245, 255, 0.1);
+}
+
+.sensor-icon {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.sensor-name {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.sensor-value {
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 700;
+}
+
+.sensor-detail {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.api-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(220, 240, 255, 0.14);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.api-status {
+  flex-shrink: 0;
+  color: var(--cyan);
+  text-align: right;
+}
+
+.api-status.error {
+  color: #ffb7b7;
+}
+
+.small-note {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+footer {
+  padding: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1.6px;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  #sceneContainer {
+    height: 55vh;
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .layout {
+    padding: 12px;
+  }
+
+  .viewer,
+  .panel {
+    padding: 12px;
+  }
+
+  .sensor-grid {
+    gap: 7px;
+  }
+
+  .sensor-card {
+    padding: 9px;
+  }
+}

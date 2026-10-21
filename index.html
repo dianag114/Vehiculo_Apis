@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehículo IoT | Panel 3D</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">SISTEMA DE MONITOREO</div>
+      <h1>VEHÍCULO <span>IoT</span></h1>
+    </div>
+    <div class="connection">
+      <span class="status-dot"></span>
+      <span id="connectionText">Iniciando sistema...</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="viewer">
+      <div class="viewer-heading">
+        <div>
+          <div class="eyebrow">VISUALIZACIÓN INTERACTIVA</div>
+          <h2>Modelo del vehículo</h2>
+        </div>
+        <span class="chip">3D / LIVE</span>
+      </div>
+
+      <div id="sceneContainer">
+        <div id="loadingOverlay">
+          <div class="loader"></div>
+          <p id="loadingText">Cargando modelo 3D...</p>
+        </div>
+
+        <div class="scene-label top-left">EXPLORADOR 3D</div>
+        <div class="scene-label bottom-left">ARRASTRA PARA ROTAR · RUEDA PARA ZOOM</div>
+        <div class="scene-label bottom-right" id="selectedLabel">NINGUNA PIEZA SELECCIONADA</div>
+      </div>
+
+      <div class="viewer-controls">
+        <button id="resetView" class="control-button">Restablecer vista</button>
+        <button id="toggleRotation" class="control-button active">Rotación automática: sí</button>
+      </div>
+
+      <p class="hint">
+        Pasa el cursor sobre una pieza para iluminarla. Haz clic para fijar la selección.
+        Pulsa fuera del coche para quitarla.
+      </p>
+    </section>
+
+    <aside class="sidebar">
+      <section class="panel selected-panel">
+        <div class="eyebrow">COMPONENTE SELECCIONADO</div>
+        <h2 id="partTitle">Explora el vehículo</h2>
+        <p id="partDescription">
+          Selecciona una pieza del modelo 3D para consultar la información relacionada.
+        </p>
+        <div class="part-state">
+          <span class="status-dot"></span>
+          <span id="partState">Esperando selección</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">TELEMETRÍA</div>
+            <h2>Sensores del vehículo</h2>
+          </div>
+          <button id="refreshSensors" class="refresh-button" title="Actualizar sensores">
+            ↻
+          </button>
+        </div>
+
+        <div class="sensor-grid">
+          <article class="sensor-card" data-sensor="temperatura">
+            <div class="sensor-icon">TEMP</div>
+            <div class="sensor-name">Temperatura</div>
+            <div class="sensor-value" id="temperatureValue">--</div>
+            <div class="sensor-detail" id="temperatureDetail">Esperando datos</div>
+          </article>
+
+          <article class="sensor-card" data-sensor="presion">
+            <div class="sensor-icon">PSI</div>
+            <div class="sensor-name">Neumáticos</div>
+            <div class="sensor-value" id="pressureValue">--</div>
+            <div class="sensor-detail" id="pressureDetail">Esperando datos</div>
+          </article>
+
+          <article class="sensor-card" data-sensor="combustible">
+            <div class="sensor-icon">FUEL</div>
+            <div class="sensor-name">Combustible</div>
+            <div class="sensor-value" id="fuelValue">--</div>
+            <div class="sensor-detail" id="fuelDetail">Esperando datos</div>
+          </article>
+
+          <article class="sensor-card" data-sensor="transmision">
+            <div class="sensor-icon">GEAR</div>
+            <div class="sensor-name">Transmisión</div>
+            <div class="sensor-value" id="transmissionValue">--</div>
+            <div class="sensor-detail" id="transmissionDetail">Esperando datos</div>
+          </article>
+
+          <article class="sensor-card" data-sensor="frenos">
+            <div class="sensor-icon">ABS</div>
+            <div class="sensor-name">Frenos</div>
+            <div class="sensor-value" id="brakesValue">--</div>
+            <div class="sensor-detail" id="brakesDetail">Esperando datos</div>
+          </article>
+
+          <article class="sensor-card" data-sensor="motor">
+            <div class="sensor-icon">MTR</div>
+            <div class="sensor-name">Motor</div>
+            <div class="sensor-value" id="engineValue">--</div>
+            <div class="sensor-detail" id="engineDetail">Esperando datos</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">ESTADO DE LOS SERVICIOS</div>
+        <h2>Conexiones API</h2>
+        <div class="api-row">
+          <span>Temperatura / presión / combustible</span>
+          <span id="api5000" class="api-status">Pendiente</span>
+        </div>
+        <div class="api-row">
+          <span>Transmisión / frenos / motor</span>
+          <span id="api8000" class="api-status">Pendiente</span>
+        </div>
+        <p class="small-note">
+          Los datos que no se puedan consultar se mostrarán como no disponibles.
+        </p>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    VEHÍCULO IoT · VISUALIZACIÓN 3D Y MONITOREO DE SENSORES
+  </footer>
+</body>
+</html>
