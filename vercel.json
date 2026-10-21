@@ -1,0 +1,30 @@
+
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/proxy/temperatura/:path*",
+      "destination": "http://32.198.210.48:5000/api/temperatura/:path*"
+    },
+    {
+      "source": "/proxy/presion-neumaticos/:path*",
+      "destination": "http://32.198.210.48:5000/api/presion-neumaticos/:path*"
+    },
+    {
+      "source": "/proxy/combustible/:path*",
+      "destination": "http://32.198.210.48:5000/api/combustible/:path*"
+    },
+    {
+      "source": "/proxy/sensores/transmision",
+      "destination": "http://184.193.76.64:8000/api/sensores/transmision"
+    },
+    {
+      "source": "/proxy/sensores/frenos",
+      "destination": "http://184.193.76.64:8000/api/sensores/frenos"
+    },
+    {
+      "source": "/proxy/sensores/motor",
+      "destination": "http://184.193.76.64:8000/api/sensores/motor"
+    }
+  ]
+}

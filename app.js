@@ -5,14 +5,16 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const MODEL_PATH = "./models/sedan-original.glb";
 
-const API = {
-  temperatura: "http://32.198.210.48:5000/api/temperatura/1",
-  presion: "http://32.198.210.48:5000/api/presion-neumaticos/1",
-  combustible: "http://32.198.210.48:5000/api/combustible/1",
-  transmision: "http://184.193.76.64:8000/api/sensores/transmision",
-  frenos: "http://184.193.76.64:8000/api/sensores/frenos",
-  motor: "http://184.193.76.64:8000/api/sensores/motor"
+
+const API_URLS = {
+  temperatura: "/proxy/temperatura/1",
+  presion: "/proxy/presion-neumaticos/1",
+  combustible: "/proxy/combustible/1",
+  transmision: "/proxy/sensores/transmision",
+  frenos: "/proxy/sensores/frenos",
+  motor: "/proxy/sensores/motor"
 };
+
 
 const container = document.getElementById("sceneContainer");
 const loadingOverlay = document.getElementById("loadingOverlay");
