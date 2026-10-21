@@ -10,9 +10,9 @@ const API = {
   temperatura: "/proxy/temperatura/1",
   presion: "/proxy/presion-neumaticos/1",
   combustible: "/proxy/combustible/1",
-  transmision: "/proxy/sensores/transmision",
-  frenos: "/proxy/sensores/frenos",
-  motor: "/proxy/sensores/motor"
+  transmision: "/proxy/sensores/transmision/1",
+  frenos: "/proxy/sensores/frenos/1",
+  motor: "/proxy/sensores/motor/1"
 };
 
 
