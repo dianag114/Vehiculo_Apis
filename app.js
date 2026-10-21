@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 const MODEL_PATH = "./models/sedan-original.glb";
 
 
-const API_URLS = {
+const API = {
   temperatura: "/proxy/temperatura/1",
   presion: "/proxy/presion-neumaticos/1",
   combustible: "/proxy/combustible/1",
