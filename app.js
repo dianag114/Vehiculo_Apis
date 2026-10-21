@@ -1,10 +1,8 @@
-
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const MODEL_PATH = "./models/sedan-original.glb";
-
 
 const API = {
   temperatura: "/proxy/temperatura/1",
@@ -14,7 +12,6 @@ const API = {
   frenos: "/proxy/sensores/frenos/1",
   motor: "/proxy/sensores/motor/1"
 };
-
 
 const container = document.getElementById("sceneContainer");
 const loadingOverlay = document.getElementById("loadingOverlay");
@@ -636,8 +633,24 @@ function setSensorDisplay(prefix, data, candidates, suffix = "") {
       }
     }
 
-    // Si la API tiene otro formato, intenta buscar una propiedad habitual.
     if (value === null) {
+      value = findValue(data, candidates);
+    }
+  }
+
+  // TRANSMISIÓN, FRENOS Y MOTOR: leer campo "estado" del registro más reciente.
+  else if (
+    prefix === "transmission" ||
+    prefix === "brakes" ||
+    prefix === "engine"
+  ) {
+    const ultimo = getLatestRecord(data);
+
+    if (ultimo && ultimo.estado !== undefined) {
+      value = ultimo.estado;
+    }
+
+    if (value === null || value === undefined) {
       value = findValue(data, candidates);
     }
   }
@@ -651,8 +664,7 @@ function setSensorDisplay(prefix, data, candidates, suffix = "") {
   const detailElement = document.getElementById(`${prefix}Detail`);
 
   if (valueElement) {
-    if (prefix === "pressure" && value !== null &&
-        typeof value === "object") {
+    if (prefix === "pressure" && value !== null && typeof value === "object") {
       valueElement.textContent =
         `DI ${value.delantera_izquierda.toFixed(1)} | ` +
         `DD ${value.delantera_derecha.toFixed(1)} | ` +
@@ -801,12 +813,11 @@ async function refreshSensors() {
       "transmission",
       results[3].value,
       [
+        "estado",
         "transmision",
         "transmisión",
-        "estado",
         "valor",
-        "lectura",
-        "velocidad"
+        "lectura"
       ]
     );
   } else {
@@ -823,12 +834,10 @@ async function refreshSensors() {
       "brakes",
       results[4].value,
       [
-        "frenos",
         "estado",
+        "frenos",
         "valor",
-        "lectura",
-        "presion",
-        "presión"
+        "lectura"
       ]
     );
   } else {
@@ -845,12 +854,10 @@ async function refreshSensors() {
       "engine",
       results[5].value,
       [
-        "motor",
         "estado",
+        "motor",
         "valor",
-        "lectura",
-        "rpm",
-        "temperatura"
+        "lectura"
       ]
     );
   } else {
