@@ -7,9 +7,10 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 const MODEL_PATH = "./models/sedan-original.glb";
 
 const API = {
-  temperatura: "/proxy/temperatura/1",
-  presion: "/proxy/presion-neumaticos/1",
-  combustible: "/proxy/combustible/1",
+  
+  temperatura: "https://scoop-files-desperate-picked.trycloudflare.com/api/temperatura/1",
+  presion: "https://scoop-files-desperate-picked.trycloudflare.com/api/presion-neumaticos/1",
+  combustible: "https://scoop-files-desperate-picked.trycloudflare.com/api/combustible/1",
   transmision: "/proxy/sensores/transmision/1",
   frenos: "/proxy/sensores/frenos/1",
   motor: "/proxy/sensores/motor/1"
