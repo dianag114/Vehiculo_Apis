@@ -5,12 +5,12 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 const MODEL_PATH = "./models/sedan-original.glb";
 
 const API = {
-  temperatura: "https://delivers-daniel-modify-flow.trycloudflare.com/api/temperatura/1",
-  presion: "https://delivers-daniel-modify-flow.trycloudflare.com/api/presion-neumaticos/1",
-  combustible: "https://delivers-daniel-modify-flow.trycloudflare.com/api/combustible/1",
-  transmision: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/transmision/1",
-  frenos: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/frenos/1",
-  motor: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/estado-motor/1"
+  temperatura: "https://wide-continue-frequency-accounting.trycloudflare.com/api/temperatura/1",
+  presion: "https://wide-continue-frequency-accounting.trycloudflare.com/api/presion-neumaticos/1",
+  combustible: "https://wide-continue-frequency-accounting.trycloudflare.com/api/combustible/1",
+  transmision: "https://dense-arab-tones-generation.trycloudflare.com/api/transmision/1",
+  frenos: "https://dense-arab-tones-generation.trycloudflare.com/api/frenos/1",
+  motor: "https://dense-arab-tones-generation.trycloudflare.com/api/estado-motor/1"
 };
 
 const container = document.getElementById("sceneContainer");
