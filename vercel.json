@@ -1,30 +1,29 @@
-
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
       "source": "/proxy/temperatura/:path*",
-      "destination": "http://2600:1f18:4915:2d01:3c9b:782f:83d1:34e9/api/temperatura/:path*"
+      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/temperatura/:path*"
     },
     {
       "source": "/proxy/presion-neumaticos/:path*",
-      "destination": "http://2600:1f18:4915:2d01:3c9b:782f:83d1:34e9/api/presion-neumaticos/:path*"
+      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/presion-neumaticos/:path*"
     },
     {
       "source": "/proxy/combustible/:path*",
-      "destination": "http://2600:1f18:4915:2d01:3c9b:782f:83d1:34e9/api/combustible/:path*"
+      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/combustible/:path*"
     },
     {
       "source": "/proxy/sensores/transmision",
-      "destination": "http://184.193.76.64:8000/api/sensores/transmision"
+      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/sensores/transmision"
     },
     {
       "source": "/proxy/sensores/frenos",
-      "destination": "http://184.193.76.64:8000/api/sensores/frenos"
+      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/sensores/frenos"
     },
     {
       "source": "/proxy/sensores/motor",
-      "destination": "http://184.193.76.64:8000/api/sensores/motor"
+      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/sensores/motor"
     }
   ]
 }
