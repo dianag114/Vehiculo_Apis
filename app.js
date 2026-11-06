@@ -2,7 +2,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-const MODEL_PATH = "./models/sedan-original.glb";
+const MODEL_PATH = new URL(
+    "/models/sedan-original.glb",
+    window.location.origin
+).href;
 
 const API = {
   temperatura: "https://delivers-daniel-modify-flow.trycloudflare.com/api/temperatura/1",
