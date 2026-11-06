@@ -1,6 +1,11 @@
 
 {
     "rewrites": [
+{
+  "src": "^/api/diagnostico/?$",
+  "dest": "/api/diagnostico"
+},
+
     {
       "source": "/proxy/temperatura/1",
       "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/temperatura/1"
