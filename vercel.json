@@ -4,15 +4,15 @@
   "rewrites": [
     {
       "source": "/proxy/temperatura/:path*",
-      "destination": "http://32.198.210.48:5000/api/temperatura/:path*"
+      "destination": "http://2600:1f18:4915:2d01:3c9b:782f:83d1:34e9/api/temperatura/:path*"
     },
     {
       "source": "/proxy/presion-neumaticos/:path*",
-      "destination": "http://32.198.210.48:5000/api/presion-neumaticos/:path*"
+      "destination": "http://2600:1f18:4915:2d01:3c9b:782f:83d1:34e9/api/presion-neumaticos/:path*"
     },
     {
       "source": "/proxy/combustible/:path*",
-      "destination": "http://32.198.210.48:5000/api/combustible/:path*"
+      "destination": "http://2600:1f18:4915:2d01:3c9b:782f:83d1:34e9/api/combustible/:path*"
     },
     {
       "source": "/proxy/sensores/transmision",
