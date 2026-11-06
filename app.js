@@ -8,9 +8,9 @@ const API = {
   temperatura: "https://delivers-daniel-modify-flow.trycloudflare.com/api/temperatura/1",
   presion: "https://delivers-daniel-modify-flow.trycloudflare.com/api/presion-neumaticos/1",
   combustible: "https://delivers-daniel-modify-flow.trycloudflare.com/api/combustible/1",
-  transmision: "/proxy/sensores/transmision/1",
-  frenos: "/proxy/sensores/frenos/1",
-  motor: "/proxy/sensores/motor/1"
+  transmision: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/transmision/1",
+  frenos: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/frenos/1",
+  motor: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/estado-motor/1"
   
 };
 
