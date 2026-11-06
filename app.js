@@ -2,10 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-const MODEL_PATH = new URL(
-    "/models/sedan-original.glb",
-    window.location.origin
-).href;
+const MODEL_PATH = "./models/sedan-original.glb";
 
 const API = {
   temperatura: "https://delivers-daniel-modify-flow.trycloudflare.com/api/temperatura/1",
@@ -14,7 +11,6 @@ const API = {
   transmision: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/transmision/1",
   frenos: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/frenos/1",
   motor: "https://chancellor-translated-sacramento-alignment.trycloudflare.com/api/estado-motor/1"
-  
 };
 
 const container = document.getElementById("sceneContainer");
@@ -466,7 +462,7 @@ async function fetchSensor(url) {
     headers: {
       Accept: "application/json"
     },
-    signal: AbortSignal.timeout(20000)
+    signal: AbortSignal.timeout(8000)
   });
 
   if (!response.ok) {
