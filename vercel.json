@@ -1,7 +1,6 @@
 
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+  "routes": [
     {
       "source": "/proxy/temperatura/:path*",
       "destination": "http://32.198.210.48:5000/api/temperatura/:path*"
