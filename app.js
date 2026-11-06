@@ -463,7 +463,7 @@ async function fetchSensor(url) {
     headers: {
       Accept: "application/json"
     },
-    signal: AbortSignal.timeout(8000)
+    signal: AbortSignal.timeout(20000)
   });
 
   if (!response.ok) {
