@@ -1,29 +1,28 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/proxy/temperatura/:path*",
-      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/temperatura/:path*"
+      "src": "^/proxy/temperatura/([^/]+)$",
+      "dest": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/temperatura/$1"
     },
     {
-      "source": "/proxy/presion-neumaticos/:path*",
-      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/presion-neumaticos/:path*"
+      "src": "^/proxy/presion-neumaticos/([^/]+)$",
+      "dest": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/presion-neumaticos/$1"
     },
     {
-      "source": "/proxy/combustible/:path*",
-      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/combustible/:path*"
+      "src": "^/proxy/combustible/([^/]+)$",
+      "dest": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/combustible/$1"
     },
     {
-      "source": "/proxy/sensores/transmision/:path*",
-      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/transmision/:path*"
+      "src": "^/proxy/sensores/transmision/([^/]+)$",
+      "dest": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/transmision/$1"
     },
     {
-      "source": "/proxy/sensores/frenos/:path*",
-      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/frenos/:path*"
+      "src": "^/proxy/sensores/frenos/([^/]+)$",
+      "dest": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/frenos/$1"
     },
     {
-      "source": "/proxy/sensores/motor/:path*",
-      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/estado-motor/:path*"
+      "src": "^/proxy/sensores/motor/([^/]+)$",
+      "dest": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/estado-motor/$1"
     }
   ]
 }
