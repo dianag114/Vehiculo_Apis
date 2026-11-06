@@ -1,9 +1,6 @@
-
-  {
+{
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "source": "/feedback/:id",
-  "destination": "/api/feedback/:id"
-}
+  "rewrites": [
     {
       "source": "/proxy/temperatura/:path*",
       "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/temperatura/:path*"
@@ -28,3 +25,5 @@
       "source": "/proxy/sensores/motor",
       "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/sensores/motor"
     }
+  ]
+}
