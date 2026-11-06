@@ -1,34 +1,32 @@
-
 {
-    "rewrites": [
-{
+  "routes": [
+    {
   "src": "^/api/diagnostico/?$",
   "dest": "/api/diagnostico"
 },
-
     {
-      "source": "/proxy/temperatura/1",
-      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/temperatura/1"
+      "src": "^/proxy/temperatura/1/?$",
+      "dest": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/temperatura/1"
     },
     {
-      "source": "/proxy/presion-neumaticos/1",
-      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/presion-neumaticos/1"
+      "src": "^/proxy/presion-neumaticos/1/?$",
+      "dest": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/presion-neumaticos/1"
     },
     {
-      "source": "/proxy/combustible/1",
-      "destination": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/combustible/1"
+      "src": "^/proxy/combustible/1/?$",
+      "dest": "http://[2600:1f18:4915:2d01:3c9b:782f:83d1:34e9]:5000/api/combustible/1"
     },
     {
-      "source": "/proxy/sensores/transmision",
-      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/transmision/1"
+      "src": "^/proxy/sensores/transmision(?:/1)?/?$",
+      "dest": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/transmision/1"
     },
     {
-      "source": "/proxy/sensores/frenos",
-      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/frenos/1"
+      "src": "^/proxy/sensores/frenos(?:/1)?/?$",
+      "dest": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/frenos/1"
     },
     {
-      "source": "/proxy/sensores/motor",
-      "destination": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/estado-motor/1"
+      "src": "^/proxy/sensores/motor(?:/1)?/?$",
+      "dest": "http://[2600:1f18:7218:0:8be9:ffdb:bd0f:a2e9]:8000/api/estado-motor/1"
     }
   ]
 }
