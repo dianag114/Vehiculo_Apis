@@ -1,19 +1,19 @@
 import * as THREE from "three";
-
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const MODEL_PATH = "./models/sedan-original.glb";
 
 const API = {
-  
-  temperatura: "https://scoop-files-desperate-picked.trycloudflare.com/api/temperatura/1",
-  presion: "https://scoop-files-desperate-picked.trycloudflare.com/api/presion-neumaticos/1",
-  combustible: "https://scoop-files-desperate-picked.trycloudflare.com/api/combustible/1",
+  temperatura: "/proxy/temperatura/1",
+  presion: "/proxy/presion-neumaticos/1",
+  combustible: "/proxy/combustible/1",
   transmision: "/proxy/sensores/transmision/1",
   frenos: "/proxy/sensores/frenos/1",
   motor: "/proxy/sensores/motor/1"
+  transmision: "/proxy/sensores/transmision",
+  frenos: "/proxy/sensores/frenos",
+  motor: "/proxy/sensores/motor"
 };
 
 const container = document.getElementById("sceneContainer");
@@ -29,7 +29,6 @@ const camera = new THREE.PerspectiveCamera(
   0.01,
   1000
 );
-
 camera.position.set(4, 2.5, 5);
 
 const renderer = new THREE.WebGLRenderer({
@@ -183,7 +182,6 @@ function makeMaterialCyan(mesh) {
 
 function addWireframe(mesh) {
   const geometry = new THREE.EdgesGeometry(mesh.geometry, 25);
-
   const material = new THREE.LineBasicMaterial({
     color: 0xf4fbff,
     transparent: true,
@@ -211,7 +209,6 @@ function setMeshHighlight(mesh, enabled) {
       lines.material.color.set(0x00f5ff);
       lines.material.opacity = 1;
     }
-
     return;
   }
 
@@ -245,12 +242,9 @@ function updateSelection(mesh) {
     showPartInfo(selectedMesh);
   } else {
     document.getElementById("partTitle").textContent = "Explora el vehículo";
-
     document.getElementById("partDescription").textContent =
       "Selecciona una pieza del modelo 3D para consultar la información relacionada.";
-
     document.getElementById("partState").textContent = "Esperando selección";
-
     document.getElementById("selectedLabel").textContent =
       "NINGUNA PIEZA SELECCIONADA";
 
@@ -265,7 +259,6 @@ function showPartInfo(mesh) {
 
   document.getElementById("partTitle").textContent = info.title;
   document.getElementById("partDescription").textContent = info.description;
-
   document.getElementById("partState").textContent =
     info.sensor ? "Sensor asociado" : "Pieza seleccionada";
 
@@ -483,7 +476,6 @@ async function fetchSensor(url) {
 }
 
 // Busca valores en objetos, arreglos y respuestas anidadas.
-
 function findValue(data, candidates) {
   if (data === null || data === undefined) return null;
 
@@ -547,7 +539,6 @@ function formatValue(value, suffix = "") {
 }
 
 // Convierte un valor a número si es válido.
-
 function toValidNumber(value) {
   if (
     value === null ||
@@ -563,7 +554,6 @@ function toValidNumber(value) {
 }
 
 // Obtiene el registro con el ID más alto de un arreglo.
-
 function getLatestRecord(data) {
   if (!Array.isArray(data?.datos)) {
     return null;
@@ -585,12 +575,10 @@ function getLatestRecord(data) {
 }
 
 // Actualiza el indicador correspondiente en el panel de sensores.
-
 function setSensorDisplay(prefix, data, candidates, suffix = "") {
   let value = null;
 
   // COMBUSTIBLE: leer porcentaje del registro más reciente.
-
   if (prefix === "fuel") {
     const ultimo = getLatestRecord(data);
 
@@ -604,7 +592,6 @@ function setSensorDisplay(prefix, data, candidates, suffix = "") {
   }
 
   // TEMPERATURA: leer valor_celsius del registro más reciente.
-
   else if (prefix === "temperature") {
     const ultimo = getLatestRecord(data);
 
@@ -618,7 +605,6 @@ function setSensorDisplay(prefix, data, candidates, suffix = "") {
   }
 
   // PRESIÓN: leer las cuatro ruedas del último registro.
-
   else if (prefix === "pressure") {
     const ultimo = getLatestRecord(data);
 
@@ -656,7 +642,6 @@ function setSensorDisplay(prefix, data, candidates, suffix = "") {
   }
 
   // TRANSMISIÓN, FRENOS Y MOTOR: leer campo "estado" del registro más reciente.
-
   else if (
     prefix === "transmission" ||
     prefix === "brakes" ||
@@ -674,7 +659,6 @@ function setSensorDisplay(prefix, data, candidates, suffix = "") {
   }
 
   // Los demás sensores conservan su lectura habitual.
-
   else {
     value = findValue(data, candidates);
   }
@@ -755,7 +739,6 @@ async function refreshSensors() {
   });
 
   // TEMPERATURA
-
   if (success.temperatura) {
     setSensorDisplay(
       "temperature",
@@ -779,7 +762,6 @@ async function refreshSensors() {
   }
 
   // PRESIÓN DE NEUMÁTICOS
-
   if (success.presion) {
     setSensorDisplay(
       "pressure",
@@ -806,7 +788,6 @@ async function refreshSensors() {
   }
 
   // COMBUSTIBLE
-
   if (success.combustible) {
     setSensorDisplay(
       "fuel",
@@ -830,7 +811,6 @@ async function refreshSensors() {
   }
 
   // TRANSMISIÓN
-
   if (success.transmision) {
     setSensorDisplay(
       "transmission",
@@ -852,7 +832,6 @@ async function refreshSensors() {
   }
 
   // FRENOS
-
   if (success.frenos) {
     setSensorDisplay(
       "brakes",
@@ -873,7 +852,6 @@ async function refreshSensors() {
   }
 
   // MOTOR
-
   if (success.motor) {
     setSensorDisplay(
       "engine",
@@ -922,9 +900,7 @@ document.getElementById("refreshSensors").addEventListener(
 );
 
 loadModel();
-
 refreshSensors();
-
 setInterval(refreshSensors, 15000);
 
 function animate() {
@@ -932,5 +908,3 @@ function animate() {
   controls.update();
   renderer.render(scene, camera);
 }
-
-animate();
